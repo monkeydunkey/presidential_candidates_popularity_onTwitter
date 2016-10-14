@@ -16,7 +16,7 @@ class TweetManager:
 		pass
 
 	@staticmethod
-	def getTweets(tweetCriteria, receiveBuffer=None, bufferLength=100):
+	def getTweets(tweetCriteria, receiveBuffer=None, bufferLength=1000):
 		refreshCursor = ''
 
 		results = []
@@ -70,7 +70,6 @@ class TweetManager:
 				if receiveBuffer and len(resultsAux) >= bufferLength:
 					receiveBuffer(resultsAux)
 					resultsAux = []
-
 				if tweetCriteria.maxTweets > 0 and len(results) >= tweetCriteria.maxTweets:
 					active = False
 					break
@@ -89,12 +88,13 @@ class TweetManager:
 		urlGetData = ''
 		if hasattr(tweetCriteria, 'querySearch'):
 			urlGetData += ' ' + tweetCriteria.querySearch
-
+		urlGetData += ' lang:en'
 		if hasattr(tweetCriteria, 'since'):
 			urlGetData += ' since:' + tweetCriteria.since
 
 		if hasattr(tweetCriteria, 'until'):
 			urlGetData += ' until:' + tweetCriteria.until
+
 
 		url = url % (urllib.quote(urlGetData), refreshCursor)
 
@@ -115,6 +115,7 @@ class TweetManager:
 			response = opener.open(url)
 			jsonResponse = response.read()
 		except:
+			print 'Url used: ', url
 			print "Twitter weird response. Try to see on browser: https://twitter.com/search?q=%s&src=typd" % urllib.quote(urlGetData)
 			sys.exit()
 			return
