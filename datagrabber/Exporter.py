@@ -6,12 +6,13 @@ import datetime
 import codecs
 import argparse
 import datetime
-outputFile = codecs.open("tweets.csv", "a+", "utf-8")
+outputFile = codecs.open("tweets_test.csv", "w+", "utf-8")
 
 outputFile.write('username;date;retweets;favorites;text;geo;mentions;\
 				  hashtags;id;permalink')
 
 def dataExporter(argv):
+	print argv
 	if len(argv) > 4 or len(argv) < 3:
 		print 'You must only pass the following parameters - query, since, until. Optional - maxTweets'
 		return
@@ -36,17 +37,17 @@ def dataExporter(argv):
 		got.manager.TweetManager.getTweets(tweetCriteria, receiveBuffer)
 
 	except Exception:
-		print 'Arguments parser error, ensure that the parameters passed are since, until and query' + argv
+		print 'Arguments parser error, ensure that the parameters passed are since, until and query' + str(argv)
 	finally:
-		outputFile.close()
-		print 'Done. Output file generated "tweets.csv".'
+		print 'Done. Added all the posible data for arguments.', str(argv)
 
 if __name__ == '__main__':
-	days = 26
-	startDate = datetime.datetime.strptime('2016-09-05', '%Y-%m-%d')
+	days = 15
+	startDate = datetime.datetime.strptime('2016-10-01', '%Y-%m-%d')
 	while days > 0:
 		endDate = startDate + datetime.timedelta(days=1)
-		dataExporter({'query': 'hillary OR trump', 'since': startDate.strftime('%Y-%m-%d')
-					, 'until': endDate.strftime('%Y-%m-%d'), 'maxTweets':50000})
+		dataExporter({'query': 'hillary OR trump OR donald trump', 'since': startDate.strftime('%Y-%m-%d')
+					, 'until': endDate.strftime('%Y-%m-%d'), 'maxTweets':3000})
 		startDate = endDate
 		days -= 1
+	outputFile.close()

@@ -16,13 +16,11 @@ class TweetManager:
 		pass
 
 	@staticmethod
-	def getTweets(tweetCriteria, receiveBuffer=None, bufferLength=1000):
+	def getTweets(tweetCriteria, receiveBuffer=None, bufferLength=100):
 		refreshCursor = ''
-
 		results = []
 		resultsAux = []
 		cookieJar = cookielib.CookieJar()
-
 		active = True
 
 		while active:
@@ -82,7 +80,7 @@ class TweetManager:
 
 	@staticmethod
 	def getJsonReponse(tweetCriteria, refreshCursor, cookieJar):
-		url = "https://twitter.com/i/search/timeline?f=tweets&q=%s&src=typd&lang=en&max_position=%s"
+		url = "https://twitter.com/i/search/timeline?vertical=default&q=%s&src=typd&lang=en&max_position=%s&reset_error_state=false"
 		# url = "https://twitter.com/i/search/timeline?f=tweets&q=%s&src=typd&max_position=%s"
 
 		urlGetData = ''
@@ -117,8 +115,7 @@ class TweetManager:
 		except:
 			print 'Url used: ', url
 			print "Twitter weird response. Try to see on browser: https://twitter.com/search?q=%s&src=typd" % urllib.quote(urlGetData)
-			sys.exit()
-			return
+			return {'items_html':''}
 
 		dataJson = json.loads(jsonResponse)
 
