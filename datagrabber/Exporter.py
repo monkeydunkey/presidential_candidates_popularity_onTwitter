@@ -6,7 +6,8 @@ import datetime
 import codecs
 import argparse
 import datetime
-outputFile = codecs.open("tweets_test.csv", "w+", "utf-8")
+import json
+outputFile = codecs.open("tweets_123.csv", "a+", "utf-8")
 
 outputFile.write('username;date;retweets;favorites;text;geo;mentions;\
 				  hashtags;id;permalink')
@@ -42,12 +43,14 @@ def dataExporter(argv):
 		print 'Done. Added all the posible data for arguments.', str(argv)
 
 if __name__ == '__main__':
-	days = 15
-	startDate = datetime.datetime.strptime('2016-10-01', '%Y-%m-%d')
-	while days > 0:
-		endDate = startDate + datetime.timedelta(days=1)
-		dataExporter({'query': 'hillary OR trump OR donald trump', 'since': startDate.strftime('%Y-%m-%d')
-					, 'until': endDate.strftime('%Y-%m-%d'), 'maxTweets':3000})
-		startDate = endDate
-		days -= 1
+	with open('queries.json', 'r') as f:
+		query = json.load(f)
+		days = query['Days']
+		startDate = datetime.datetime.strptime(query['StartDate'], '%Y-%m-%d')
+		while days > 0:
+			endDate = startDate + datetime.timedelta(days=1)
+			dataExporter({'query': ' OR '.join(query['queries']), 'since': startDate.strftime('%Y-%m-%d')
+						, 'until': endDate.strftime('%Y-%m-%d'), 'maxTweets':query['maxTweets']})
+			startDate = endDate
+			days -= 1
 	outputFile.close()
