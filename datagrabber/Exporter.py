@@ -7,10 +7,9 @@ import codecs
 import argparse
 import datetime
 import json
-outputFile = codecs.open("tweets_123.csv", "a+", "utf-8")
+outputFile = codecs.open("tweets.txt", "w+", "utf-8")
 
-outputFile.write('username;date;retweets;favorites;text;geo;mentions;\
-				  hashtags;id;permalink')
+outputFile.write('username;~;date;~;retweets;~;favorites;~;text;~;geo;~;mentions;~;hashtags;~;id;~;permalink')
 
 def dataExporter(argv):
 	print argv
@@ -28,8 +27,7 @@ def dataExporter(argv):
 		print 'Searching...'
 		def receiveBuffer(tweets):
 			for t in tweets:
-				outputFile.write(('\n%s;%s;%d;%d;"%s";%s;%s;%s;"%s";\
-								%s' % (t.username, t.date.strftime("%Y-%m-%d %H:%M"),
+				outputFile.write(('\n%s;~;%s;~;%d;~;%d;~;"%s";~;%s;~;%s;~;%s;~;"%s";~;%s' % (t.username, t.date.strftime("%Y-%m-%d %H:%M"),
 								       t.retweets, t.favorites, t.text, t.geo,
 									      t.mentions, t.hashtags, t.id, t.permalink)))
 			outputFile.flush()
