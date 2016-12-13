@@ -13,8 +13,13 @@ To achieve this we will build an end to pipeline that would consist of the follo
 Datagrabber Module - datagrabber/queries.json contains the various parameters that can be set to pull data from twitter. 
 Following are the parameters that can be set.
 
-1. "StartDate":"2016-10-01",
-2. "Days" : 15,
-3. "queries":["hillary","donald trump","trump"],
-4. "maxTweets":ffdfsdfsd
+1. "StartDate": Start date,
+2. "Days" : No of days for which data is needed,
+3. "queries": An array of query terms,
+4. "maxTweets": No of tweets to be pulled for each day
 
+The data is pulled by scrapping Twitter's website so it might or might not work. On the other hand as it does not uses the public API there is no rate limit.
+
+Apart from the Datagrabber module rest all of the modules are merged in one jupyter notebook - SentimentAnalysis_Experiments.ipynb.
+
+P.S. Many files were created on a as need basis for the eperiment and hence there is no code for the creation of those files. 
