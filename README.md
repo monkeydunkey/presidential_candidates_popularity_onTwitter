@@ -22,7 +22,7 @@ using these feature we trained our learning models. Following machine learning m
 4. Data-modeller: Using scoring accuracy on the test set, we determined the best combination of machine learning model and feature. Using the best model for each candidate, we predicted the sentiments for the rest of the downloaded dataset. 
 5. Data-visualization: We visualized the positive, neutral and negative tweet for each of the candidate as a time series data for the date range for which we ran our experiment
 
-All the code for cleaning and modeling the data as well as the final analysis is present in the SentimentAnalysis_Experiments.ipynb file. Description of methods used can be found in the jupyter notebook itself  
+All the code for cleaning and modeling the data as well as the final analysis is present in the [SentimentAnalysis_Experiments.ipynb](https://github.com/monkeydunkey/presidential_candidates_popularity_onTwitter/blob/master/SentimentAnalysis_Experiments.ipynb) file. Description of methods used can be found in the jupyter notebook itself  
 
 ## Datagrabber Module 
 	datagrabber/queries.json contains the various parameters that can be set to pull data from twitter. 
