@@ -1,7 +1,7 @@
-# presidential_candidates_popularity_onTwitter
-This is the code base for my CSE-573 project. 
+# Presidential Candidates Popularity on Twitter
+This is the code base for my CSE-573 project. We analysed the tweets related to US 2016 presidential candidates  
 
-The aim of the project was to build a classifier to predict the people's sentiment by their tweets and then use it to identify their political preferences. Using this information I then  analysed the popularity of each of the candidate and tried to predict who will win.
+The aim of the project was to build a classifier to predict the people's sentiment by their tweets and then use it to identify their political preferences. Using this information we then  analysed the popularity of each of the candidate and tried to predict who will win.
 The solution is divided into the follwing subsystems:
 
 1. Datagrabber: Using Twitter’s public API download and store tweets related to the candidates and their campaign. This would handle both historical as well real-time data pulls
